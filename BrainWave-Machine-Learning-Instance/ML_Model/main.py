@@ -40,5 +40,4 @@ def runmodel(string):
     seq = tokenizer.texts_to_sequences(message)
     padded = pad_sequences(seq, maxlen=max_seq_len)
     pred = predictor.predict(padded)
-    print('Message: ' + str(message))
     return class_names[np.argmax(pred)]
