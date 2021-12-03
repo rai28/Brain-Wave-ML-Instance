@@ -3,7 +3,7 @@ from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
 from collections import Counter
 from heapq import nlargest
-doc=""
+
 def summarizer(doc):
     nlp = spacy.load('en')
     doc = nlp(doc)
@@ -33,6 +33,4 @@ def summarizer(doc):
     summarized_sentences = nlargest(3, sent_strength, key=sent_strength.get)
     final_sentences = [ w.text for w in summarized_sentences ]
     summary = ' '.join(final_sentences)
-    print(summary)
-
-summarizer(doc)
+    return summary

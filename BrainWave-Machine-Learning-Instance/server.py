@@ -2,6 +2,7 @@ from flask import *
 import json
 import time
 from ML_Model.main import runmodel
+from ML_Model.summarizer import summarizer
 import os
 app = Flask(__name__)
 
@@ -19,13 +20,17 @@ def get_user_data():
     # get json data from request
     userData = request.get_json()
     # get text property from json data
-    text = userData['blog']
+    text = userData['diary']
+    #calling the function summarizer
+    summarizedText = summarizer(text)
+    
     # pass text to runmodel function
     result = runmodel(text)
-    # return result
-    return json.dumps(result)
+    # return result and summarized text
+    return json.dumps({'emotion': result, 'summarizedText': summarizedText}), 200
 
 
 if __name__ == '__main__':
-    
-    app.run("localhost", port=9000 , debug=True)
+
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=9000)
