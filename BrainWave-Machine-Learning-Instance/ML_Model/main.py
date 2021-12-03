@@ -29,7 +29,7 @@ if len(physical_devices) > 0:
    tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 def runmodel(string):
-    predictor = load_model('C:/Users/Ritesh/Desktop/temp/Machine-Learning/ML_Model/CNN_with_LSTM_with_word2vec.h5')
+    predictor = load_model('ML_Model/CNN_with_LSTM_with_word2vec.h5')
     num_classes = 5
     max_seq_len = 500
     class_names = ['joy', 'fear', 'anger', 'sadness', 'neutral']
